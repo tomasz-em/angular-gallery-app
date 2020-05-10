@@ -1,0 +1,9 @@
+<div class="my-box">
+    <h2>Prognoza pogody na żywo</h2>
+    <label for="city">Określ miasto</label>
+    <input type="text" name="city" id="city" [(ngModel)] = "location" /> <!-- two way data binding -->
+    <p *ngIf="isEmptyCityName" class="error-text">Pole miejscowości jest wymagane!</p> 
+    <p>(test wspisywnej zawartości: <strong>{{ location }}</strong>)</p>
+    <button (click) = "handleSearch()" >Sprawdź </button>
+    <div *ngIf="data" >Temperatura: {{ convertKelvinsToCeslius(data.main.temp) }} </div> 
+</div>
