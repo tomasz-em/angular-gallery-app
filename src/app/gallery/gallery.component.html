@@ -2,14 +2,8 @@
     <h2>Angularowa Galeria ({{ currentIndex + 1 }})</h2> <!-- da się pisać wyrażenia, a nie tylko listować zmienne -->
 
     <ul>
-        <li [class.active]="currentIndex === 0">
-            <img [src] = "pictures[0]" alt="" class="thumb"  (click) = "handleClick(0)" />
-        </li>
-        <li [class.active]="currentIndex === 1">
-            <img [src] = "pictures[1]" alt="" class="thumb" (click) = "handleClick(1)" />
-        </li>
-        <li [class.active]="currentIndex === 2">
-            <img [src] = "pictures[2]" alt="" class="thumb" (click) = "handleClick(2)" />
+        <li *ngFor="let picture of pictures; let i = index" [class.active]="currentIndex === i">    <!--"index" to wewnątrzna zmienna dla pętli! -->
+            <img [src] = "picture" alt="picture" class="thumb"  (click) = "handleClick(i)" />
         </li>
     </ul>
 

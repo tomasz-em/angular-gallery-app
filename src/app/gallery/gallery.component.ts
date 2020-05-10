@@ -9,23 +9,39 @@ export class GalleryComponent {
 /*   pictures: Array <string>;
   currentIndex: Number; */
 
+    // warto użyć tablicy obiektów, np. by pozyskać "alt" czyt jakieś inne treści
     pictures = [
       'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
       'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
       'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1066&q=80'
     ];
+    timeInterval = 5000;
     currentIndex = 0; // wybór początkowej wartość do podglądu spośród dopstępnych 
+    //currentInterval = setInterval( ...) ... by zatrzymać pokaz po kliknieciu i wystartować czas od tego kliknięcia... l8b blokwoać gdy hover
 
   constructor() {
+
+    // startInterval() {...}
+    // stopInterval() {...}
+
     setInterval( () => {
       if ( this.currentIndex < ( this.pictures.length - 1 ) ) this.currentIndex = this.currentIndex + 1;
       else this.currentIndex = 0;
-    }, 3000 );
+    }, this.timeInterval );
    }
 
-   handleClick( index ) {
-     this.currentIndex = index;
+   handleClick( currentIndex ) {
+     this.currentIndex = currentIndex;
    }
+
+   handlePrev ( currentIndex ) {
+    // this.currentIndex = currentIndex;
+   }
+
+   handleNext ( currentIndex ) {
+    // this.currentIndex = currentIndex;
+   }
+
 
   ngOnInit(): void {
   }

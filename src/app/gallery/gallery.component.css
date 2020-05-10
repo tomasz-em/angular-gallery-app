@@ -2,6 +2,12 @@ h2 {
     margin-top: 0;
     margin-bottom: 0.5em;
     text-align: center;
+    background-color: #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 > span {
+    color: #666;
 }
 
 ul {
@@ -76,6 +82,9 @@ section span:hover {
     height: 60px;
 }
 
+.hide {
+    display: none;
+}
 
 /* section {
     border : 1 px solid #ccc;
