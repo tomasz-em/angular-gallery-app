@@ -6,14 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
+  location: string; 
+  data: any[];
+  isEmptyLocationName: boolean;
 
-  constructor() { }
-  location = 'Warszawa';
-  data = null;
-  isEmptyCityName = false;
+  constructor() {
+    this.location = 'Warszawa';  // zmienna z dwustronnym powiązaniem w szablonie -- ngModel
+    this.data = null;
+    this.isEmptyLocationName = false;
+   }
 
   handleSearch() {
-    // const adresAPI = 'https://openweathermap.org/...q=' + this.location + '&^tgYT^&tgy&^g7*&*';
+    if ( this.location.length < 1 ) this.isEmptyLocationName = true;
+    else {
+      this.isEmptyLocationName = false;
+      // odpytaj serwer o pogodę
+
+      // const adresAPI = 'https://openweathermap.org/...q=' + this.location + '&^tgYT^&tgy&^g7*&*';
     // fetch( adresAPI).
     // .then( (res) => res.json() )
     // .then( data => {
@@ -21,6 +30,7 @@ export class WeatherComponent {
     //    this.data = data;
     // }  )
 
+    } // IF-this.location.length-END
   }
 
   convertKelvinsToCeslius( tempKelvins) {
