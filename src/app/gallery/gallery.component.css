@@ -8,6 +8,7 @@ h2 {
 
 h2 > span {
     color: #666;
+    position: static;
 }
 
 ul {
@@ -49,7 +50,7 @@ section {
     position: relative;
 }
 
-section span {
+section span.nav {
     position: absolute;
     bottom: 20px;
     font-size: 30px;
@@ -63,17 +64,20 @@ section span {
     text-align: center;
 }
 
-section span.prev {
+section span.nav.prev {
     left: 20px;
 }
 
-section span.next {
+section span.nav.next {
     right: 20px;
 }
 
-section span:hover {
+section span.prev:hover,
+section span.next:hover
+{
     cursor: pointer;
     background-color: rgba(0, 0, 0.8);
+    /* border: 1px solid yellow; */
     color: yellow;
 }
 

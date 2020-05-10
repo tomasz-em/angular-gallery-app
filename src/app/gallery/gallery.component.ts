@@ -30,18 +30,22 @@ export class GalleryComponent {
     }, this.timeInterval );
    }
 
-   handleClick( currentIndex ) {
-     this.currentIndex = currentIndex;
+   handleClick( passedIndex ) {
+    if ( passedIndex < ( this.pictures.length - 1 ) && ( passedIndex > 0 ) )
+    this.currentIndex = passedIndex;
    }
 
-   handlePrev ( currentIndex ) {
-    // this.currentIndex = currentIndex;
+   handlePrev ( passedIndex ) { // logikę  poprawić o przejście na początek/koniec
+    if ( passedIndex < ( this.pictures.length - 1 ) )
+     if ( passedIndex > 0 ) this.currentIndex = this.currentIndex - 1;
+     else this.currentIndex = 0;
    }
 
-   handleNext ( currentIndex ) {
-    // this.currentIndex = currentIndex;
+   handleNext ( passedIndex ) {
+    if ( passedIndex > 0 )
+      if ( passedIndex < ( this.pictures.length ) ) this.currentIndex = this.currentIndex + 1;
+      else this.currentIndex = 0;
    }
-
 
   ngOnInit(): void {
   }
