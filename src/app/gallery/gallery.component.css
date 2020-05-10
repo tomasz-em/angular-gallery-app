@@ -1,0 +1,119 @@
+h2 {
+    margin: 0.5em auto;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    float: left;
+    width: 100px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+li:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+li:last-of-type {
+    margin-right: 0;
+}
+
+li.active {
+    opacity: 0.5;
+}
+
+.preview {
+    width: 320px;
+    height: 240px;
+    display: block;
+}
+
+section {
+    border: 1px solid #ccc;
+    width: 320px;
+    padding: 10px;
+    position: relative;
+}
+
+section span {
+    position: absolute;
+    bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    line-height: 33px;
+    text-align: center;
+}
+
+section span.prev {
+    left: 20px;
+}
+
+section span.next {
+    right: 20px;
+}
+
+section span:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0.8);
+}
+
+.thumb {
+    width: 100px;
+    height: 60px;
+}
+
+
+/* section {
+    border : 1 px solid #ccc;
+    display : inline-block;
+}
+
+section div {
+    text-align : center;
+    padding : 10 px;
+}
+
+section div img {
+    max-width : 300 px;
+    max-height : 300 px;
+}
+
+ul {
+    list-style : none;
+    margin : 0;
+    padding : 0;
+}
+
+ul li {
+    display : inline-block ;
+    padding : 5 px;
+    border : 1 px solid #ccc;
+    margin : 5 px;
+}
+
+ul li img:hover {
+    cursor : pointer;
+    opacity : 1;
+}
+
+ul li img {
+    max-width : 100 px;
+    max-height : 100 px;
+    opacity : 0.5;
+}
+
+ul li img .selected {
+    opacity : 0.9;
+} */
