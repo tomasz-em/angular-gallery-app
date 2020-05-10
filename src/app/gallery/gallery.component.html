@@ -1,14 +1,14 @@
 <section>
-    <h2>Angularowa Galeria ({{ currentIndex + 1 }})</h2>
+    <h2>Angularowa Galeria ({{ currentIndex + 1 }})</h2> <!-- da się pisać wyrażenia, a nie tylko listować zmienne -->
 
     <ul>
-        <li>
+        <li [class.active]="currentIndex === 0">
             <img [src] = "pictures[0]" alt="" class="thumb"  (click) = "handleClick(0)" />
         </li>
-        <li class="active">
+        <li [class.active]="currentIndex === 1">
             <img [src] = "pictures[1]" alt="" class="thumb" (click) = "handleClick(1)" />
         </li>
-        <li>
+        <li [class.active]="currentIndex === 2">
             <img [src] = "pictures[2]" alt="" class="thumb" (click) = "handleClick(2)" />
         </li>
     </ul>

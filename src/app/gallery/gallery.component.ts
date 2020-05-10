@@ -14,7 +14,7 @@ export class GalleryComponent {
       'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
       'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1066&q=80'
     ];
-    currentIndex = 0; // początkowa waertość
+    currentIndex = 0; // wybór początkowej wartość do podglądu spośród dopstępnych 
 
   constructor() {
     setInterval( () => {
