@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent {
-    // deklaracje TYPÓW zmiennych
-  pictures: Array <object>;
-  currentIndex: Number;
-  timeInterval: Number;
-  rememberedInterval: any;
-  isPaused: false;
+    // deklaracje TYPÓW zmiennych oraz ich WARTOŚCI (gdy daje się je ustawić poczatkowo lub łatwo określić)
+  pictures: Array <any>;  // dane do wyświetlenia; konkretne typy na później, rekord/interfejs trzeba zdefnioniować
+  currentIndex: number = 0; // bieżąca pozycja przeglądana w powiększeniu; zaczynamy od ZERA, tj. od POCZĄTKU TABLICY
+  timeInterval: number = 5000; // czas wyświetlenia bieżącego obrazka / przejścia pomiędzy slajdami
+  rememberedInterval: any;  // wskaźnik na czas przejścia
+  isPaused: boolean = false;  // stan pauzy - czy przegląd slajdów jest wstrzymany?
 
   constructor() {
     // warto użyć tablicy obiektów, np. by pozyskać "alt" czyt jakieś inne treści
@@ -30,15 +30,14 @@ export class GalleryComponent {
       },
       {
         url: 'https://images.unsplash.com/photo-1518983618434-4a4e0e3f67be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80',
-        alt: 'Zima na obrazku, Babia Góra (Tatry, Polska)'
+        alt: 'Tak wygląda śnieżna zima, Babia Góra (Beskidy Zachodnie, Polska)'
       },
       {
         url: 'https://images.unsplash.com/photo-1584922096499-7852ca1cb981?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80',
         alt: 'Wysokie Tatry, Polska'
       }
     ];
-    this.timeInterval = 5000;
-    this.currentIndex = 0; // wybór początkowej wartość do podglądu spośród dopstępnych 
+
     //currentInterval = setInterval( ...) ... by zatrzymać pokaz po kliknieciu i wystartować czas od tego kliknięcia... l8b blokwoać gdy hover    
 
     // startInterval() {...}
@@ -49,7 +48,8 @@ export class GalleryComponent {
       if ( this.currentIndex < ( this.pictures.length - 1 ) ) this.currentIndex = this.currentIndex + 1;
       else this.currentIndex = 0;
     }, this.timeInterval );
-   }
+
+  } //   // constructor-END
 
    handleClick( passedIndex ) {
     if ( passedIndex < ( this.pictures.length ) && ( passedIndex >= 0 ) )
@@ -66,43 +66,7 @@ export class GalleryComponent {
       else this.currentIndex = this.currentIndex + 1;
    }
 
-  ngOnInit(): void {
-  }
+  /* ngOnInit(): void {  // i tak nie zadziała, nie jest teraz wykorzystywane
+  } */
 
 }
-
-
-
-// z jakiejś racji "moje wklajanie z modyfikacją"  nie działa :/....
-
-/* @Component ({
-  selector : 'app-gallery' ,
-  templateUrl : './gallery.component.html' ,
-  styleUrls : [ './gallery.component.css' ]
-})
-export class GalleryComponent {
-  selectedIndex : number;
-  pictures : Array <string> ;
-
-  constructor () {
-  // zdjęcia pochodzą z galerii mgsm: http://www.mgsm.pl/pl/katalog/samsung/galaxys9/galeria/samsung-galaxy-s9-07/
-  this.pictures = [
-    'http://files.mgsm.pl/phones/samsung-galaxy-s9/samsung-galaxy-s9-07.jpg' ,
-    'http://files.mgsm.pl/phones/samsung-galaxy-s9/samsung-galaxy-s9-02.jpg' ,
-    'http://files.mgsm.pl/phones/samsung-galaxy-s9/samsung-galaxy-s9-06.jpg' ,
-    'http://files.mgsm.pl/phones/samsung-galaxy-s9/samsung-galaxy-s9-04.jpg' ,
-    'http://files.mgsm.pl/phones/samsung-galaxy-s9/samsung-galaxy-s9-03.jpg' ,
-    'http://files.mgsm.pl/phones/samsung-galaxy-s9/samsung-galaxy-s9-05.jpg'
-  ];
-  this.selectedIndex = 0 ;
-  }
-
-//  ngOnInit(): void {
-//  }
-
-  get selectedPicture () : string {
-    return this.pictures[ this.selectedIndex ];
-  }
-} // class-Gallery-END
- */
-

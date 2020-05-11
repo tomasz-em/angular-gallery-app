@@ -11,17 +11,40 @@ body {
 
 .outer-box {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .outer-box > div {
     margin: 1em;
     padding: 0 1em;
+    /* flex-basis: 300px; */
+}
+
+.outer-box > div:first-of-type {
+    margin-bottom: 3em;
 }
 
 .outer-box > div:not(:first-of-type) {
-    border-left: 2px solid #666;
+    border-top: 2px solid #666;
+    /* border-left: none; */
     padding: 1em 3em; 
     margin: 0 1em;
 }
 
+.outer-box > div > h2 {
+    line-height: 1.1em;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .outer-box {
+        flex-direction: row;
+    }
+    
+    .outer-box > div:not(:first-of-type) {
+        border-top: none;
+        border-left: 2px solid #666;
+        padding: 1em 3em; 
+        margin: 0 1em;
+    }
+}

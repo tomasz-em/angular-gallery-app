@@ -11,7 +11,7 @@ export class WeatherComponent {
   isEmptyLocationName: boolean;
 
   constructor() {
-    this.location = 'Warszawa';  // zmienna z dwustronnym powiązaniem w szablonie -- ngModel
+    this.location = '';  // zmienna z dwustronnym powiązaniem w szablonie -- ngModel
     this.data = null;
     this.isEmptyLocationName = false;
    }

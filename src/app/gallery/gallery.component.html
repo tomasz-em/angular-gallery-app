@@ -8,19 +8,20 @@
     </ul>
 
         <!--  tu ukryje ten element na pierwszym slajdzie! -- UŻYCIE dynamicznego przełączania klas ze zdefiniowanym wyświetlaniem-->
-    <span class="nav prev" [class.hide]="currentIndex === 0" (click)="handlePrev(currentIndex - 1)" >&lArr;</span> 
+    <span class="nav prev" [class.hide]="currentIndex === 0" (click)="handlePrev()" >&lArr;</span> 
 
     <!-- warunki logiczne WARTO OKREŚLAĆ na DYREKTYWIE "*ngIf" -- ale teraz to POKAŻE SIĘ TEN ELEMENT GDYT PRAWDA -- WARUNKOWE WYŚWIETLANIE TREŚCI
         (+): nie potrzeba przypinać jakiejś dodatkowej definicji klasy, jak "hide"!  
         (+/-): działa w oparciu o jakiś AKTUALNIE PRAWDZIWY warunek lub STAN zmiennej, BY POKAZAĆ DANY ELEMENT-->
-    <span class="nav next" *ngIf="currentIndex < ( pictures.length - 1 )" (click)="handleNext(currentIndex + 1)" >&rArr;</span> <!-- też ukrywa -->
+    <span class="nav next" *ngIf="currentIndex < ( pictures.length - 1 )" (click)="handleNext()" >&rArr;</span> <!-- też ukrywa -->
 
     <!-- poniżej działający uprzednio przykład z dynamicznym przypisywaniem zdefiniowanych klas - POWIELENIE ELEMENTU !!! -->
     <!-- <span class="nav next" [class.hide] = "currentIndex === ( pictures.length - 1 )" (click) = "handleNext(currentIndex + 1)" >&rArr;</span>  -->
 
     <!-- <img [src]="pictures[currentIndex]" class="preview" [alt] = "currentIndex" [title] = "currentIndex" /> --> 
             <!-- przyjrzeć się [ALT] i {{ COŚ + 1 }} -=-OBIE DEFINICJE DZIAŁAJĄ PRAWIDŁOWO-->
-    <img [src]="pictures[currentIndex].url" class="preview" alt="Podgląd z nru {{ currentIndex +1 }}" title="Podgląd z nru {{ currentIndex +1 }}" />
+    <img [src]="pictures[currentIndex].url" class="preview" alt="Podgląd z nru {{ currentIndex + 1 }}" 
+        title="Podgląd z nru {{ currentIndex + 1 }}" />
     <p class="image-title">{{ currentIndex + 1 }}. {{pictures[currentIndex].alt}}</p>
     
 </section>
