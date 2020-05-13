@@ -1,8 +1,10 @@
 <section>
-    <h2>Angularowa Galeria <span>({{ currentIndex + 1 }})</span></h2> <!-- da się pisać wyrażenia, a nie tylko listować zmienne -->
-
+    <h2 [class.paused-notification]="isPaused">{{ isPaused ? "P A U Z A" : "Angularowa Galeria" }} <span>({{ currentIndex + 1 }})</span></h2> <!-- da się pisać wyrażenia, a nie tylko listować zmienne -->
+        <!-- PONIŻSZY zapis operuje WARUNKOWYM POKAZYWANIEM !INNYCH! elmementów, przez co nie działają ustawione na nich animacje!!! --> 
+    <!-- <h2 *ngIf="!isPaused">Angularowa Galeria <span>({{ currentIndex + 1 }})</span></h2> -->
+    <!-- <h2 *ngIf="isPaused" class="pause-notification">PAUZA <span>({{ currentIndex + 1 }})</span></h2> -->
     <ul>
-        <li *ngFor="let picture of pictures; let i = index" [class.active]="currentIndex === i">    <!--"index" to wewnątrzna zmienna dla pętli! -->
+        <li *ngFor="let picture of pictures; let i = index" [class.active]="currentIndex === i">    <!--"index" to wewnętrzna zmienna dla pętli! -->
             <img [src] = "picture.url" alt = "{{ i + 1 }}: {{picture.alt}}" title = "{{ i + 1 }}: {{picture.alt}}" class="thumb" (click) = "handleClick(i)" />
         </li>
     </ul>
@@ -20,8 +22,11 @@
 
     <!-- <img [src]="pictures[currentIndex]" class="preview" [alt] = "currentIndex" [title] = "currentIndex" /> --> 
             <!-- przyjrzeć się [ALT] i {{ COŚ + 1 }} -=-OBIE DEFINICJE DZIAŁAJĄ PRAWIDŁOWO-->
-    <img [src]="pictures[currentIndex].url" class="preview" alt="Podgląd z nru {{ currentIndex + 1 }}" 
-        title="Podgląd z nru {{ currentIndex + 1 }}" />
+    <img [src]="pictures[currentIndex].url" class="preview" alt="Podgląd z nru {{ currentIndex + 1 }}"
+        title="Podgląd z nru {{ currentIndex + 1 }}"
+        [class.paused-border]="isPaused"
+        (mouseenter)="stopSlideshow()"
+        (mouseleave)="startSlideshow()" />
     <p class="image-title">{{ currentIndex + 1 }}. {{pictures[currentIndex].alt}}</p>
     
 </section>

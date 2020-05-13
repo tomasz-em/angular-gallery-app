@@ -11,7 +11,8 @@ export class GalleryComponent {
   currentIndex: number = 0; // bieżąca pozycja przeglądana w powiększeniu; zaczynamy od ZERA, tj. od POCZĄTKU TABLICY
   timeInterval: number = 5000; // czas wyświetlenia bieżącego obrazka / przejścia pomiędzy slajdami
   rememberedInterval: any;  // wskaźnik na czas przejścia
-  isPaused: boolean = false;  // stan pauzy - czy przegląd slajdów jest wstrzymany?
+  isPaused: boolean = true;  // stan pauzy - czy przegląd slajdów jest wstrzymany?
+  wasInterrupted: boolean = false;  // czy jakkolwiek JUŻ zablokowano pauzę? 
 
   constructor() {
     // warto użyć tablicy obiektów, np. by pozyskać "alt" czyt jakieś inne treści
@@ -38,32 +39,58 @@ export class GalleryComponent {
       }
     ];
 
+    this.startSlideshow();
     //currentInterval = setInterval( ...) ... by zatrzymać pokaz po kliknieciu i wystartować czas od tego kliknięcia... l8b blokwoać gdy hover    
 
-    // startInterval() {...}
-    // stopInterval() {...}
+  } //   // constructor-END
+
+    slideshow() {
+      if ( this.currentIndex < ( this.pictures.length - 1 ) ) this.currentIndex = this.currentIndex + 1;  // efektywny zakres to MAX-2
+      else this.currentIndex = 0;
+      this.wasInterrupted = false;
+    }
+
+    startSlideshow() {
+        // ale nie wyzwalaj tego wielorotnie
+      //if ( !this.wasInterrupted ) {
+        this.stopSlideshow();
+        // this.rememberedInterval = setInterval( this.slideShow, this.timeInterval );  // wykonaj wielokrotnie zapamiętaną funkcję
+        this.rememberedInterval = setInterval( () => {
+            this.slideshow();  // jawne wywołanie jako podległośc tej funkcji
+
+          }, this.timeInterval );
+        this.isPaused = false;
+      //}  
+    }
+
+    stopSlideshow() {
+      // console.log('PRZED zatrzymaniem', this.rememberedInterval );
+      clearInterval( this.rememberedInterval );
+      // console.log('PO zatrzymaniu', this.rememberedInterval );
+      this.wasInterrupted = true; // aktywacja blokady na  PONOWNĄ aktywację zdarzenia, by uniknąć wieloktrotnych wywołań
+      this.isPaused = true;
+    }
     // timeInterval =
 
-    setInterval( () => {
-      if ( this.currentIndex < ( this.pictures.length - 1 ) ) this.currentIndex = this.currentIndex + 1;
-      else this.currentIndex = 0;
-    }, this.timeInterval );
 
-  } //   // constructor-END
+
 
    handleClick( passedIndex ) {
     if ( passedIndex < ( this.pictures.length ) && ( passedIndex >= 0 ) )
     this.currentIndex = passedIndex;
+    this.startSlideshow();
    }
 
    handlePrev () { // logikę  poprawić o przejście na początek/koniec
     if ( this.currentIndex === 0 ) this.currentIndex = this.pictures.length - 1;
     else this.currentIndex = this.currentIndex - 1;
+    this.startSlideshow();  // + restart czasu pokazywania DOCELOWEGO slajdu
    }
 
    handleNext () {
       if ( this.currentIndex === ( this.pictures.length - 1) ) this.currentIndex = 0;
       else this.currentIndex = this.currentIndex + 1;
+      this.startSlideshow();  // + restart czasu pokazywania DOCELOWEGO slajdu
    }
 
   /* ngOnInit(): void {  // i tak nie zadziała, nie jest teraz wykorzystywane
