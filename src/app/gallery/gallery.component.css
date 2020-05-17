@@ -3,6 +3,7 @@ section {
     background-color: #fff;
     width: 565px;
     max-width: 565px;
+    overflow: hidden;
     padding: 10px;
     border: 1px solid #ccc;
 }
@@ -56,19 +57,23 @@ section span.next:hover
     height: 60px;
 }
 
-h2 {
+section h2 {
+    height: 1.67em; /* ==40/24, zapobiegnie zmianie wysokości, gdyt więcej tekstu lub "szerzej" */
     margin-top: 0;
-    margin-bottom: 0.5em;
     padding: 0.25em;
-    text-align: center;
+    margin-bottom: 0;
+    overflow: hidden;
     background-color: #ddd;
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    transition: color 0.4s 0.05s, background-color 0.3s 0.05s;
+    transition: color 0.4s 0.05s, background-color 0.3s 0.05s, letter-spacing 0.3s;
 }
 
-h2 > span {
+section h2 > span {
+    padding-left: 0.4em;
     color: #666;
     position: static;
+    letter-spacing: 0;
 }
 
 ul {
@@ -127,12 +132,47 @@ li.active:hover {
     display: none;
 }
 
-.paused-notification {
-    background-color: #aaa;
-    color: #eee;
+section h2.paused-notification {
+    background-color: #aaa; /* atrybut potrzebował SILNIEJSZEGO selektora niż samą klasę (po zmianie "section h2") */
+    color: #eee;    /* pozostałe atrybuty dziedziczone się przenosiły i animowały, mimo słabszego selektora klasy */
+    letter-spacing: 0.75em;
 }
 
 .paused-border {
     outline: 2px solid #999;    
     cursor: progress;
+}
+
+.progress {
+    width: 0%;
+    height: 5px;
+    margin-bottom: 0.5em;
+    background: linear-gradient(to right, #666, #4caf50) #4caf50;
+    text-align: center; 
+    line-height: 30px;  /* ta i wcześniejsza zasada pozwoli tu ewentualnie wklejać LICZBOWĄ WAERTOŚĆ PROCENTOWĄ dla trwającej operacji*/
+    color: white;
+}
+
+.animate-progress-increase {
+    animation: anim-progress-increase 3s linear forwards infinite;
+}
+
+.animate-progress-decrease {
+    animation: anim-progress-decrease 1s linear forwards;
+}
+
+
+@keyframes anim-progress-increase {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes anim-progress-decrease {
+    to {
+        width: 0;
+    }
 }

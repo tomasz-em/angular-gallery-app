@@ -1,11 +1,21 @@
 <section>
-    <h2 [class.paused-notification]="isPaused">{{ isPaused ? "P A U Z A" : "Angularowa Galeria" }} <span>({{ currentIndex + 1 }})</span></h2> <!-- da się pisać wyrażenia, a nie tylko listować zmienne -->
+    <h2 [class.paused-notification]="isPaused">{{ isPaused ? "PAUZA" : "Angularowa Galeria" }}<span>({{ currentIndex + 1 }})</span></h2> <!-- da się pisać wyrażenia, a nie tylko listować zmienne -->
         <!-- PONIŻSZY zapis operuje WARUNKOWYM POKAZYWANIEM !INNYCH! elmementów, przez co nie działają ustawione na nich animacje!!! --> 
     <!-- <h2 *ngIf="!isPaused">Angularowa Galeria <span>({{ currentIndex + 1 }})</span></h2> -->
     <!-- <h2 *ngIf="isPaused" class="pause-notification">PAUZA <span>({{ currentIndex + 1 }})</span></h2> -->
+
+    <div class="progress animate-progress-increase" 
+        [class.animate-progress-decrease]="isPaused"
+        (animationend)="progressAnimationEnd()"
+        [ngStyle]="restyleProgressBar()" >
+        <!-- [ngStyle]="{'animation-duration': timeIntervalSeconds +'s'}"    jak przekazać wiele zasad lub WARUNKOWO przypisać określone atrybuty? -->
+        <!-- [(ngModel)]="isSlideshowRunning" -->
+        <!-- *ngStyle="animate-name: "> -->
+    </div>
+
     <ul>
         <li *ngFor="let picture of pictures; let i = index" [class.active]="currentIndex === i">    <!--"index" to wewnętrzna zmienna dla pętli! -->
-            <img [src] = "picture.url" alt = "{{ i + 1 }}: {{picture.alt}}" title = "{{ i + 1 }}: {{picture.alt}}" class="thumb" (click) = "handleClick(i)" />
+            <img class="thumb" [src] = "picture.url" alt = "{{ i + 1 }}: {{picture.alt}}" title = "{{ i + 1 }}: {{picture.alt}}"  (click) = "handleClick(i)" />
         </li>
     </ul>
 
