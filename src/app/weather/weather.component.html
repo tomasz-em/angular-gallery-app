@@ -5,5 +5,11 @@
     <p *ngIf="isEmptyLocationName" class="error-text">Pole miejscowości jest wymagane!</p> 
     <p>(test wpisywanej zawartości: <strong>{{ location }}</strong>)</p>
     <button (click) = "handleSearch()" >Sprawdź </button>
-    <!-- <div *ngIf="data" >Temperatura: {{ convertKelvinsToCeslius(data.main.temp) }} </div> -->
+
+    <div *ngIf="weatherData" >
+        <hr />
+        <h2>Bieżące wskazania temperatury, odczytane z serwera pogody dla lokalizacji <em>{{ typedLocation }}</em></h2>
+        <h3>Temperatura: {{ convertKelvinsToCeslius( weatherData.main.temp ) }} °C (dla fizyków: {{ weatherData.main.temp }} K)</h3>
+    </div>
+
 </div>

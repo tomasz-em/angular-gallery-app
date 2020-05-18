@@ -6,13 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
-  location: string; 
-  data: any[];
+  APIkey: string = 'ea391bb99dff26ad3deb547bcda175fc';    //@gmail.com
+  location: string;
   isEmptyLocationName: boolean;
+  typedLocation: string; 
+  weatherData: any;
 
   constructor() {
     this.location = '';  // zmienna z dwustronnym powiązaniem w szablonie -- ngModel
-    this.data = null;
+    this.weatherData = null;
     this.isEmptyLocationName = false;
    }
 
@@ -21,6 +23,8 @@ export class WeatherComponent {
     else {
       this.isEmptyLocationName = false;
       // odpytaj serwer o pogodę
+      let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${ this.location }&appid=${ this.APIkey }`;
+      //let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=Warszawa&appid=${ this.APIkey }`;
 
       // const adresAPI = 'https://openweathermap.org/...q=' + this.location + '&^tgYT^&tgy&^g7*&*';
     // fetch( adresAPI).
@@ -29,6 +33,25 @@ export class WeatherComponent {
     //    console.log( {data} );
     //    this.data = data;
     // }  )
+
+    fetch( weatherURL )
+      .then( res => res.json() )
+      .then( data => {
+          console.log({ data });
+          this.weatherData = {};  // zerowanie zawartości
+          this.typedLocation = this.location;
+
+          if ( data.cod === 200 ) {
+            // dane poprawne...
+            this.weatherData = data;
+          }
+          
+          if ( data.cod === 404 ) {// błędna lokalizacja lub jej zły zapis
+            this.weatherData = data;
+            
+          }  
+      });
+
 
     } // IF-this.location.length-END
   }
