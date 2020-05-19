@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { WeatherData } from './weather-data.interface'; // import irterfejsu typu danych, który zwraca API openweathermap
+// import { convertKelvinsToCelsius } from './weather.functions'; // ?!
 
 @Component({
   selector: 'app-weather',
@@ -10,7 +12,7 @@ export class WeatherComponent {
   location: string = '';  // na dwustronne powiązanie z treścią w szablonie -- ngModel;
   isEmptyLocationName: boolean;
   typedLocation: string;  // jako zawartość na wpisaną lokalziację w ostatnim zapytaniu (dla neigo jest właśnie wyświetlany wynik) 
-  weatherData: any;
+  weatherData: WeatherData; // zdefiniowano INTERFEJS dla zwracanych z API danych
   isLocationRequestError: boolean = false;  // czy wystąpił błąd, do sygnalizowania komunikatami na stronie 
   isLocationRequestDoneOK: boolean = false; // póki co stan TAK/NIE, prawdopodobnie do rozszerzenia...
 
@@ -37,9 +39,9 @@ export class WeatherComponent {
         //if (response.status === 404 || response.status === 200) return response.json(); // WARUNKO czy ZAWSZE zwracać WYNIK?!
          return response.json();  // póki co ZAWSZE zwrot OTRZYMANYCH DANYCH
       })
-      .then( data => {
+      .then( ( data: WeatherData ) => { // użycie typu danych
         console.log({ data });
-        this.weatherData = {};  // zerowanie poprzedniej zawartości zapytania (o ile jakaś była)
+        this.weatherData = null;  // zerowanie poprzedniej zawartości zapytania (o ile jakaś była)
         this.typedLocation = this.location;
         this.weatherData = data;  // przypiasnie OTRZYMANYCH danych, o JAKIELKOLWIEK otrzymanej strukturze!
         this.isLocationRequestDoneOK = false; // WSTĘPNIE ustawiane na błąd - ZAWSZE!
@@ -59,13 +61,11 @@ export class WeatherComponent {
           // też treść błędu może wyświetlić jakoś pod formularzem
       });
 
-
     } // IF-this.location.length-END
   }
 
   convertKelvinsToCelsius( tempKelvins) {
     return Math.ceil( tempKelvins - 273.15 );   // zaokrąglenie w górę do pełnych "Celsjuszy"
-  } 
-
+  }
 
 }

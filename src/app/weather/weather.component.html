@@ -6,16 +6,18 @@
     <p>(test wpisywanej zawartości: <strong>{{ location }}</strong>)</p>
     <button (click) = "handleSearch()" >Sprawdź </button>
 
-    <div *ngIf="isLocationRequestDoneOK" >
-        <hr />
-        <h2>Bieżące wskazania temperatury, odczytane z serwera pogody dla lokalizacji <em>{{ typedLocation }}</em></h2>
-        <h3>Temperatura: {{ onvertKelvinsToCelsius( weatherData.main.temp ) }} °C (dla fizyków: {{ weatherData.main.temp }} K)</h3>
-    </div>
-
     <div *ngIf="isLocationRequestError" >
         <h2>Odczytane z serwera dane</h2>
         <h3 class="error-text">BŁĄD: nie udało się odnaleźć podanej lokalizacji <em>{{ typedLocation }}</em>, zatem nie odczytano warunków pogodowych!</h3>
         <p>Szczegóły błędu: <strong>{{ weatherData.cod }}</strong> - <em>{{ weatherData.message }}</em>.</p>
     </div>
+
+</div>
+
+<div *ngIf="isLocationRequestDoneOK" >
+    <h2>Bieżące wskazania temperatury, odczytane z serwera pogody dla lokalizacji <em>{{ typedLocation }}</em></h2>
+    <h3>Temperatura: {{ convertKelvinsToCelsius( weatherData.main.temp ) }} °C (dla fizyków: {{ weatherData.main.temp }} K)</h3>
+    <h2>Docelowo poniżej pojawią się bardziej szczegółowe dane meteorologiczne...</h2>
+    <app-weather-condition [currentWeather]="weatherData" [enteredLocation]="location"></app-weather-condition>
 
 </div>

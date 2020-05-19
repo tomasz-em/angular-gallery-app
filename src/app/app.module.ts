@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms'; // wymagane dopisanie tego by oipe
 import { AppComponent } from './app.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { WeatherComponent } from './weather/weather.component';
+import { WeatherConditionComponent } from './weather/weather-condition/weather-condition.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    WeatherComponent
+    WeatherComponent,
+    WeatherConditionComponent
   ],
   imports: [
     BrowserModule,

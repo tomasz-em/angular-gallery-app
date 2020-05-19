@@ -1,0 +1,28 @@
+<div class="current-weather">
+    <h2>Jestem komponenentem szczegółów pogodowych dla <em>tej</em> lokalizacji</h2>
+    <h5>Wyświetlam bieżące KONKRETY POGODOWE... oraz drobne dane o powietrzu: przejrzystości, porywach wiatru </h5>
+    <hr />
+    <h1>{{ enteredLocation }}</h1>
+    <p>dopasowana lokalizacja: <strong>{{ currentWeather.name }}</strong><br /> 
+       kod kraju: <strong>{{ currentWeather.sys.country }}</strong><br />
+       strefa czasowa: <strong>{{ ( currentWeather.timezone >= 0 ) ? "+" : '-' }}{{ currentWeather.timezone / 3600 }}</strong>h)<br />
+       wschód słońca: <strong>{{ currentWeather.sys.sunrise }}</strong> [czasu nieludzkiego]<br />
+       zachód słońca: <strong>{{ currentWeather.sys.sunset }}</strong> [czasu nieludzkiego]<br />
+       godzina zapytania: <strong>{{ currentWeather.dt }}</strong> [czasu nieludzkiego]<br />
+    </p> 
+    <h2>Aktualna prognoza: <strong>{{ currentWeather.weather[0].main }}</strong>, <em>{{ currentWeather.weather[0].description }}</em></h2>
+        <img src="https://openweathermap.org/img/wn/{{ currentWeather.weather[0].icon }}@2x.png" 
+            alt="currentWeather.weather[0].description" />
+    <h4>temperatura: <strong>{{ currentWeather.main.temp }}</strong> K 
+        (odczuwalna: <strong>{{ currentWeather.main.feels_like }}</strong> K,
+        minimalna: <strong>{{ currentWeather.main.temp_min }}</strong> K, 
+        maksymalna: <strong>{{ currentWeather.main.temp_max }}</strong> K)
+    </h4>
+    <p>
+        ciśnienie powietrza: <strong>{{ currentWeather.main.pressure }}</strong> hPa<br />
+        wilgotonośc powietrza: <strong>{{ currentWeather.main.humidity }}</strong>%<br />
+        prędkość wiatru: <strong>{{ currentWeather.wind.speed  }}</strong> m/s<br />
+        kierunek wiatru: <strong>{{ currentWeather.wind.deg }}</strong>°<br />
+        przejrzystość powietrza: <strong>{{ currentWeather.visibility }}</strong> m<br />
+    </p>
+</div>
