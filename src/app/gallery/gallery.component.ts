@@ -67,9 +67,9 @@ export class GalleryComponent {
     }
 
     stopSlideshow() {
-      console.log('PRZED zatrzymaniem', this.rememberedInterval );
+      // console.log('PRZED zatrzymaniem', this.rememberedInterval );
       clearInterval( this.rememberedInterval );
-      console.log('PO zatrzymaniu', this.rememberedInterval );
+      // console.log('PO zatrzymaniu', this.rememberedInterval );
       this.wasInterrupted = true; // aktywacja blokady na  PONOWNĄ aktywację zdarzenia, by uniknąć wieloktrotnych wywołań
       this.isPaused = true;
       this.isSlideshowRunning = false;
