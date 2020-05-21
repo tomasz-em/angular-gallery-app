@@ -1,13 +1,14 @@
 <div class="my-box">
     <h2>Prognoza pogody na żywo</h2>
     <label for="city">Określ miejscowość (polskie znaki są OK):</label>
-    <input type="text" name="city" id="city" [(ngModel)] = "location" /> <!-- two way data binding -->
+    <input type="text" name="city" id="city" [(ngModel)] = "location" (submit) = "handleSearch()" /> <!-- two way data binding -->
     <p *ngIf="isEmptyLocationName" class="error-text">Pole miejscowości jest wymagane!</p> 
-    <p>(test wpisywanej zawartości: <strong>{{ location }}</strong>)</p>
+    <p *ngIf="location.length">(test wpisywanej zawartości: <strong>{{ location }}</strong>)</p>
     <button (click) = "handleSearch()" >Sprawdź </button>
 
     <div *ngIf="isLocationRequestError" >
-        <h2>Odczytane z serwera dane</h2>
+        <br />
+        <h2>Nieudana komunikacja z serwerem</h2>
         <h3 class="error-text">BŁĄD: nie udało się odnaleźć podanej lokalizacji <em>{{ typedLocation }}</em>, zatem nie odczytano warunków pogodowych!</h3>
         <p>Szczegóły błędu: <strong>{{ weatherData.cod }}</strong> - <em>{{ weatherData.message }}</em>.</p>
     </div>
@@ -16,8 +17,8 @@
 
 <div *ngIf="isLocationRequestDoneOK" >
     <h2>Bieżące wskazania temperatury, odczytane z serwera pogody dla lokalizacji <em>{{ typedLocation }}</em></h2>
-    <h3>Temperatura: {{ convertKelvinsToCelsius( weatherData.main.temp ) }} °C (dla fizyków: {{ weatherData.main.temp }} K)</h3>
-    <h2>Docelowo poniżej pojawią się bardziej szczegółowe dane meteorologiczne...</h2>
-    <app-weather-condition [currentWeather]="weatherData" [enteredLocation]="location"></app-weather-condition>
+    <h3>Temperatura: {{ convertKelvinsToCelsius( weatherData.main.temp ) }} &deg;C (dla fizyków: {{ weatherData.main.temp }} K)</h3>
+
+    <app-weather-condition [currentWeather]="weatherData" [enteredLocation]="typedLocation"></app-weather-condition>
 
 </div>
