@@ -1,10 +1,12 @@
 <div class="my-box">
-    <h2>Prognoza pogody na żywo</h2>
-    <label for="city">Określ miejscowość (polskie znaki są OK):</label>
-    <input type="text" name="city" id="city" [(ngModel)] = "location" (submit) = "handleSearch()" /> <!-- two way data binding -->
-    <p *ngIf="isEmptyLocationName" class="error-text">Pole miejscowości jest wymagane!</p> 
-    <p *ngIf="location.length">(test wpisywanej zawartości: <strong>{{ location }}</strong>)</p>
-    <button (click) = "handleSearch()" >Sprawdź </button>
+    <form (submit)="handleSearch()">
+        <h2>Prognoza pogody na żywo</h2>
+        <label for="city">Określ miejscowość (polskie znaki są OK):</label>
+        <input type="text" name="city" id="city" [(ngModel)]="location" (submit)="handleSearch()" /> <!-- two way data binding -->
+        <p *ngIf="isEmptyLocationName" class="error-text">Pole miejscowości jest wymagane!</p> 
+        <button>Sprawdź</button>        
+    </form>
+
 
     <div *ngIf="isLocationRequestError" >
         <br />
@@ -16,8 +18,6 @@
 </div>
 
 <div *ngIf="isLocationRequestDoneOK" >
-    <h2>Bieżące wskazania temperatury, odczytane z serwera pogody dla lokalizacji <em>{{ typedLocation }}</em></h2>
-    <h3>Temperatura: {{ convertKelvinsToCelsius( weatherData.main.temp ) }} &deg;C (dla fizyków: {{ weatherData.main.temp }} K)</h3>
 
     <app-weather-condition [currentWeather]="weatherData" [enteredLocation]="typedLocation"></app-weather-condition>
 

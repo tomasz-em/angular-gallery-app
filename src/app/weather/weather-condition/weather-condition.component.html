@@ -1,26 +1,65 @@
 <div class="current-weather">
-    <h1>{{ enteredLocation }}</h1>
-    <p>dopasowana lokalizacja: <strong>{{ currentWeather.name }}</strong><br /> 
-       kod kraju: <strong>{{ currentWeather.sys.country }}</strong><br />
-       strefa czasowa: <strong>{{ ( currentWeather.timezone >= 0 ) ? "+" : '-' }}{{ currentWeather.timezone / 3600 }}</strong>h)<br />
-       wschód słońca: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunrise ) }}</strong><br />
-       zachód słońca: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunset ) }}</strong><br />
-       godzina zapytania: <strong>{{ convertTimestampToTimeString( currentWeather.dt ) }}</strong><br />
-    </p> 
-    <h2>Aktualna prognoza: <strong>{{ currentWeather.weather[0].main }}</strong>, <em>{{ currentWeather.weather[0].description }}</em></h2>
-        <img src="https://openweathermap.org/img/wn/{{ currentWeather.weather[0].icon }}@2x.png" 
-            alt="{{ currentWeather.weather[0].description }}" />
-    <h4>temperatura: <strong>{{ convertKelvinsToCelsius( currentWeather.main.temp ) }}</strong> &deg;C
-        (odczuwalna: <strong>{{ convertKelvinsToCelsius( currentWeather.main.feels_like ) }}</strong> &deg;C,
-        minimalna: <strong>{{ convertKelvinsToCelsius( currentWeather.main.temp_min ) }}</strong> &deg;C, 
-        maksymalna: <strong>{{ convertKelvinsToCelsius( currentWeather.main.temp_max ) }}</strong> &deg;C)
-    </h4>
-    <p>
-        ciśnienie powietrza: <strong>{{ currentWeather.main.pressure ? currentWeather.main.pressure : "---" }}</strong> hPa<br />
-        wilgotność powietrza: <strong>{{ currentWeather.main.humidity ? currentWeather.main.humidity : "--- "}}</strong>%<br />
-        prędkość wiatru: <strong>{{ currentWeather.wind.speed ? currentWeather.wind.speed : "---" }}</strong> m/s 
-            (<strong>{{ currentWeather.wind.speed ? convertVelocityToKPH( currentWeather.wind.speed ) : "---" }}</strong> km/h)<br />
-        kierunek wiatru: <strong>{{ currentWeather.wind.deg ? currentWeather.wind.deg : "--- " }}</strong>&deg;<br />
-        przejrzystość powietrza: <strong>{{ currentWeather.visibility ? currentWeather.visibility / 1000 : "---" }}</strong> km<br />
-    </p>
+    <div>
+        <h2 class="main-title">Bieżące warunki pogodowe</h2>
+        <div>
+            <div class="main-info">
+                <img src="https://openweathermap.org/img/wn/{{ currentWeather.weather[0].icon }}@2x.png" 
+                alt="{{ currentWeather.weather[0].description }}" />
+                <div>
+                    <h2 title="wartość dla fizyków: {{ currentWeather.main.temp }} K">
+                        <strong class="big-number">{{ convertKelvinsToCelsius( currentWeather.main.temp ) }}</strong> &deg;C
+                    </h2>
+                    <h2>{{ currentWeather.weather[0].description }}</h2>
+                </div>
+            </div>
+            <div class="location-info">
+                <h1>{{ enteredLocation }}</h1>
+                <div>
+                    <p>
+                        <span *ngIf="enteredLocation != currentWeather.name">(<strong>{{ currentWeather.name }}</strong>)</span> 
+                        <strong>{{ ( enteredLocation != currentWeather.name ) ? ", " : "" }}{{ currentWeather.sys.country }}</strong>
+                    </p>  
+                </div>
+            </div>
+          
+        </div>
+        <div class="temp-info">
+            <h3>Temperatura</h3>
+            <ul>
+                <li>odczuwalna: <strong>{{ convertKelvinsToCelsius( currentWeather.main.feels_like ) }}</strong> &deg;C</li>
+                <li>minimalna: <strong>{{ convertKelvinsToCelsius( currentWeather.main.temp_min ) }}</strong> &deg;C</li>
+                <li>maksymalna: <strong>{{ convertKelvinsToCelsius( currentWeather.main.temp_max ) }}</strong> &deg;C</li>
+            </ul>
+        </div>
+    </div>
+        <div class="air-info">
+            <ul>
+                <li>ciśnienie powietrza: <strong>{{ currentWeather.main.pressure ? currentWeather.main.pressure : "---" }}</strong> hPa</li>
+                <li>zachmurzenie: <strong>{{ ( currentWeather.clouds.all || currentWeather.clouds.all == 0 ) ? currentWeather.clouds.all : "---" }}</strong>%</li>
+                <li>wilgotność powietrza: <strong>{{ currentWeather.main.humidity ? currentWeather.main.humidity : "--- "}}</strong>%</li>
+            </ul>
+            <ul>   
+                <li>prędkość wiatru: <strong>{{ currentWeather.wind.speed ? currentWeather.wind.speed : "---" }}</strong> m/s 
+                    (<strong>{{ currentWeather.wind.speed ? convertVelocityToKPH( currentWeather.wind.speed ) : "---" }}</strong> km/h)</li>
+                <li>kierunek wiatru: <strong>{{ currentWeather.wind.deg ? currentWeather.wind.deg : "--- " }}</strong>&deg;</li>
+                <li>przejrzystość powietrza: <strong>{{ currentWeather.visibility ? currentWeather.visibility / 1000 : "---" }}</strong> km</li>
+            </ul>
+        </div>
+
+    <div>
+        <!-- <h2>Aktualna prognoza: <strong>{{ currentWeather.weather[0].main }}</strong>, <em>{{ currentWeather.weather[0].description }}</em></h2> -->
+
+        <div class="footer-notes">
+            <h3>Kalendarium</h3>
+            <ul>
+                <li>wschód słońca: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunrise ) }}</strong></li>
+                <li>zachód słońca: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunset ) }}</strong></li>
+                <li>strefa czasowa: <strong>{{ ( currentWeather.timezone >= 0 ) ? "+" : '' }}{{ currentWeather.timezone / 3600 }}</strong>h</li>
+                <li *ngIf="currentWeather.timezone != 7200">strefa czasowa użytkownika: <strong>+2</strong>h</li>
+                <li>stan z: <strong>{{ convertTimestampToTimeString( currentWeather.dt ) }}</strong></li>
+                <li>(base: <strong>{{ currentWeather.base ? currentWeather.base : "---" }}</strong>, sys.type: <strong>{{ currentWeather.sys.type ? currentWeather.sys.type : "---" }}</strong>)</li>
+            </ul>
+        </div>    
+     </div>  
+
 </div>

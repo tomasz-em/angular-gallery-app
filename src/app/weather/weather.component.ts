@@ -27,7 +27,7 @@ export class WeatherComponent {
     else {
       this.isEmptyLocationName = false;
       // odpytaj serwer o pogodę
-      let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${ this.location }&appid=${ this.APIkey }`;
+      let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${ this.location }&appid=${ this.APIkey }&lang=pl`; // "jenzyk polsky" działa ;)
       //let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=Warszawa&appid=${ this.APIkey }`;
 
     fetch( weatherURL )

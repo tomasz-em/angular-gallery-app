@@ -1,6 +1,144 @@
+/* reset marginesów */
+h1, h2, h3, h4, h5, h6, ul, p 
+{
+    margin: 0 auto;
+}
+
+
 .current-weather {
+    display: flex;
+    flex-direction: column;
     background-color: #ddd;
     margin: 2em;
     padding: 1em;
     border: 2px solid #333;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+
+.current-weather ul {
+    padding-left: 0;
+}
+
+
+.current-weather li {
+    list-style: none;
+}
+
+.big-number {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: -0.5em;
+}
+
+.main-title {
+    margin: -1em -1em 0;
+    padding: 0.75em 0;
+    padding-bottom: 0.5em;
+    font-size: 2em;
+    line-height: 1em;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-info > div {
+    margin-left: 1em;
+    /* margin-right: 1em; */
+    min-width: 10em;
+    background-color: #ddf;
+}
+
+.main-info > div > h2:last-child {
+    line-height: 1em;
+}
+
+.location-info {
+    text-align: right;
+    font-size: 1.25em;
+    background-color: #e6e6e6;
+}
+
+
+/* .location-info p {
+    font-size: 1.5em;
+} */
+
+.location-info span strong {
+    font-weight: bolder;
+    color: #555;
+}
+
+.temp-info,
+.footer-notes {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+    margin: 0 -1em;
+    padding: 0.5em 0;
+}
+
+.temp-info {
+    background-color: #f8f8f8; 
+    background-color: rgba(248, 248, 248, 0.75);
+    margin-top: 0.75em;
+}
+
+.temp-info strong {
+    font-size: 1.5em;
+    line-height: 0.8em;
+}
+
+.footer-notes {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+    /* vertical-align: middle; */
+    margin: 0 -1em -1em;
+    /* padding-top: 0.75em; */
+    padding-bottom: 0.5em;
+    line-height: 1em;
+    text-align: center;
+    background-color: #f8f8f8; 
+}
+
+.temp-info h3,
+.footer-notes h3
+{
+    margin: 0 1em;
+    flex-basis: 8em;
+    /* vertical-align: middle; */
+}
+
+.temp-info h3 {
+    flex-basis: 6em;
+}
+
+
+.temp-info ul,
+.footer-notes ul
+{
+    display: flex;
+    /* flex-basis: 10em; */
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.temp-info ul li,
+.footer-notes ul li
+{
+    background-color: #d9d9d9;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.25em;
+}
+
+.footer-notes ul li:last-child {
+    background-color: #bbb;
+    font-style: italic;
 }
