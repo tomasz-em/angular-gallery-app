@@ -1,17 +1,24 @@
 
 <div class="outer-box">
 
-  <div>
-    <h2>
-      Najpierw Galeria Zdjęć z Pokazem Slajdów <br />
-      (foto z <a href="https://unsplash.com/" target="_blank" rel="noopener nofollow">unsplash.com</a>)
-    </h2>
-    <app-gallery></app-gallery>
-  </div>
+<app-project-selector (notifyGallerySelection)="onGalleryElementSelection($event)" 
+  (notifyWeatherForecastSelection)="onWeatherForecastElementSelection($event)" ></app-project-selector>
 
-  <div>
-    <h2>Teraz Pogoda</h2>
-    <app-weather></app-weather>
-  </div>  
+  <div class="filler" [class.bgc-gallery]="isDisplayedGallery" [class.bgc-weather]="isDisplayedWeatherForecast" >
+
+    <div *ngIf="isDisplayedGallery" >
+      <h1>
+        Galeria Zdjęć z Pokazem Slajdów
+        <span>(foto z <a href="https://unsplash.com/" target="_blank" rel="noopener nofollow">unsplash.com</a>)</span>
+      </h1>
+      <app-gallery></app-gallery>
+    </div>
+
+    <div *ngIf="isDisplayedWeatherForecast" >
+      <h1>Pogoda &ndash; bieżące wskazania oraz pięciodniowa prognoza</h1>
+      <app-weather></app-weather>
+    </div>      
+
+  </div>
 
 </div>

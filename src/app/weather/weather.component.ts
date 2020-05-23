@@ -9,7 +9,7 @@ declare const convertKelvinsToCelsius: any; // "import" z zadeklarowanego pliku 
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
-  APIkey: string = 'ea391bb99dff26ad3deb547bcda175fc';    //@gmail.com
+  APIkey: string = 'ea391bb99dff26ad3deb547bcda175fc';    // @gmail.com
   location: string = '';  // na dwustronne powiązanie z treścią w szablonie -- ngModel;
   isEmptyLocationName: boolean;
   typedLocation: string;  // jako zawartość na wpisaną lokalziację w ostatnim zapytaniu (dla neigo jest właśnie wyświetlany wynik) 

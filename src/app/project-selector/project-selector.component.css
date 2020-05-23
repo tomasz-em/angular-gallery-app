@@ -1,0 +1,36 @@
+h1, h2, h3, h4, h5, h6, ul, p 
+{
+    margin: 0 auto;
+}
+
+.top-bar {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    box-shadow: 0 -1px 5px 1px black;
+    color: #fff;
+    padding: 0.2em 0.75em 0.35em;
+    background-color: slategray;
+}
+
+.top-bar input {
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 1em;
+    transform: scale(2);
+}
+
+.top-bar label,
+.top-bar input ~ span
+{
+    color: #ddd;
+    font-style: italic;
+    transition: color 0.25s 0.1s;
+}
+
+.top-bar input:checked ~ span {
+    color: #fff;
+}
