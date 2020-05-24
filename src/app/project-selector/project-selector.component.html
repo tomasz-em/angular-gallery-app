@@ -1,6 +1,6 @@
 <div class="top-bar">
     <h2>
-        Wybierz projekt: 
+        <span [class.pulsating-text]="isSelectedGallery == isSelectedWeatherForecast" >Wybierz projekt</span>: 
         <label>
             <input type="radio" name="project" value="angular-gallery" [(ngModel)]="selectedValue" (change)="handleChange()" />
             <span>Angularowa Galeria</span>

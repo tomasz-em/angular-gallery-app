@@ -34,3 +34,19 @@ h1, h2, h3, h4, h5, h6, ul, p
 .top-bar input:checked ~ span {
     color: #fff;
 }
+
+.pulsating-text {
+    animation: anim-pulsating-text 2s infinite;
+}
+
+@keyframes anim-pulsating-text {
+    0% {
+        color: white;
+    }
+    50% {
+        color: yellow;
+    }
+    100% {
+        color: white;
+    }
+}
