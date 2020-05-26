@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WeatherData } from './weather-data.interface'; // import irterfejsu typu danych, który zwraca API openweathermap
 // import { convertKelvinsToCelsius } from './weather.functions'; // ?!
 declare const convertKelvinsToCelsius: any; // "import" z zadeklarowanego pliku wspólnych zasobów, tu funkcji; ścieżka do pliku dopisana w "angular.json"
+declare const differenceUserTimezoneToGMTInSeconds: any; // różnica strefy czasowej przeglądarki użytkowanika a wpisaną strefą czasową wpisanej lokalizacji 
 
 @Component({
   selector: 'app-weather',
@@ -16,6 +17,7 @@ export class WeatherComponent {
   weatherData: WeatherData; // zdefiniowano INTERFEJS dla zwracanych z API danych
   isLocationRequestError: boolean = false;  // czy wystąpił błąd, do sygnalizowania komunikatami na stronie 
   isLocationRequestDoneOK: boolean = false; // póki co stan TAK/NIE, prawdopodobnie do rozszerzenia...
+  userTimezoneOffset: number = differenceUserTimezoneToGMTInSeconds(); // strefa czasowa użytkownika w sekundach (wartość w odniesieniu do GMT) 
 
   constructor() {
     this.weatherData = null;
@@ -65,7 +67,7 @@ export class WeatherComponent {
     } // IF-this.location.length-END
   }
 
-  convertKelvinsToCelsius( tempKelvins ) { //  MA UŻYWAĆ RAZ ZDEFINIOWANEJ I WSPÓLNEJ FUNKCJI NARZĘDZIOWEJ DLA APLIKACJI (tu taka sama nazwa)
+  convertKelvinsToCelsius( tempKelvins: number ): number { //  MA UŻYWAĆ RAZ ZDEFINIOWANEJ I WSPÓLNEJ FUNKCJI NARZĘDZIOWEJ DLA APLIKACJI (tu taka sama nazwa)
     return convertKelvinsToCelsius( tempKelvins );   // wewnątrznie używa ZADEKLAROWANEJ funkcji z "biblioteki"...
   }
 

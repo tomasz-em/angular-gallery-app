@@ -26,3 +26,7 @@ function convertMPS2KPH ( velocity ) {
     /* [m/s] na [km/h] ==> (m/s) * (60*60)/1000, albo po prostu przemożyć podaną predkość przez 3,6 ;) */
     return ( velocity * 3.6 ).toFixed(2);    // tyllko DWA miejsca po przecinku zwróci maksymalnie z ZAOKRĄGLENIEM
 }
+
+function differenceUserTimezoneToGMTInSeconds () {
+    return new Date().getTimezoneOffset() * 60; //  * (-1) ?!
+}

@@ -14,6 +14,7 @@ declare const convertMPS2KPH: any;  // aż za prosty konwerter
 export class WeatherConditionComponent implements OnInit {
   @Input() currentWeather: WeatherData;   // wartości przekazywane do komponentu w "@Input"!
   @Input() enteredLocation: string;
+  @Input() timezoneOffsetToGMT: number;
 
   constructor() { }
 
@@ -21,10 +22,16 @@ export class WeatherConditionComponent implements OnInit {
     return convertKelvinsToCelsius( tempKelvins );   // wewnętrznie używa ZADEKLAROWANEJ funkcji z biblioteki... by była ta funkcja dostępna w szablonie
   }
 
-  convertTimestampToTimeString( timestamp: number ): string {
+  convertTimestampToTimeString( timestamp: number ): string {  // pierwowzór
     // return convertUnixEpochToTimeString( timestamp );
     return convertUnixEpochToHourAndMinutesString( timestamp );
   }
+
+  convertTimestampToTimeStringIncludingLocationOffset( timestamp: number ): string {
+      // weź pod uwagę różnicę czasu pomiędzy lokalizacją użytkowanika a lokalziacją deocelową!
+    return convertUnixEpochToHourAndMinutesString( timestamp + this.timezoneOffsetToGMT + this.currentWeather.timezone );
+  }
+
 
   convertVelocityToKPH( velocity: number ): string {  // zwróci wynik z dokładnością do DWÓCH miejsc po przecinku dziesiętnym
     return convertMPS2KPH( velocity );

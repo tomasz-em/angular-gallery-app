@@ -1,6 +1,6 @@
 <div class="current-weather">
     <div>
-        <h2 class="main-title">Bieżące warunki pogodowe</h2>
+        <h2 class="main-title">Bieżące warunki pogodowe<span>, stan z <strong>{{ convertTimestampToTimeString( currentWeather.dt ) }}</strong></span></h2>
         <div>
             <div class="main-info">
                 <img src="https://openweathermap.org/img/wn/{{ currentWeather.weather[0].icon }}@2x.png" 
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="location-info">
-                <h1>{{ enteredLocation }}</h1>
+                <h1 title="szerokość geograficzna: {{ currentWeather.coord.lat }}, długość geogr.: {{ currentWeather.coord.lon }}">{{ enteredLocation }}</h1>
                 <div>
                     <p>
                         <span *ngIf="enteredLocation != currentWeather.name">(<strong>{{ currentWeather.name }}</strong>)</span> 
@@ -52,11 +52,30 @@
         <div class="footer-notes">
             <h3>Kalendarium</h3>
             <ul>
-                <li>wschód słońca: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunrise ) }}</strong></li>
-                <li>zachód słońca: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunset ) }}</strong></li>
-                <li>strefa czasowa: <strong>{{ ( currentWeather.timezone >= 0 ) ? "+" : '' }}{{ currentWeather.timezone / 3600 }}</strong>h</li>
-                <li *ngIf="currentWeather.timezone != 7200">strefa czasowa użytkownika: <strong>+2</strong>h</li>
-                <li>stan z: <strong>{{ convertTimestampToTimeString( currentWeather.dt ) }}</strong></li>
+                <li>
+                    wschód słońca: 
+                    <strong>{{ convertTimestampToTimeStringIncludingLocationOffset( currentWeather.sys.sunrise ) }}</strong>
+                    <span *ngIf=" convertTimestampToTimeStringIncludingLocationOffset( currentWeather.sys.sunrise ) != convertTimestampToTimeString( currentWeather.sys.sunrise )">
+                        (względnie: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunrise ) }}</strong>)
+                    </span>
+                </li>
+                <li>
+                    zachód słońca: 
+                    <strong>{{ convertTimestampToTimeStringIncludingLocationOffset( currentWeather.sys.sunset ) }}</strong>
+                    <span *ngIf=" convertTimestampToTimeStringIncludingLocationOffset( currentWeather.sys.sunset ) != convertTimestampToTimeString( currentWeather.sys.sunset )">
+                        (względnie: <strong> {{ convertTimestampToTimeString( currentWeather.sys.sunset ) }}</strong>)
+                    </span>
+                </li>
+                <li>
+                    długość dnia: <strong>{{ convertTimestampToTimeString( currentWeather.sys.sunset - currentWeather.sys.sunrise ) }}</strong>h
+                </li>
+
+                <li>
+                    strefa czasowa: <strong>{{ ( currentWeather.timezone >= 0 ) ? "+" : '' }}{{ currentWeather.timezone / 3600 }}</strong>h
+                </li>
+                <li *ngIf="currentWeather.timezone + timezoneOffsetToGMT != 0">strefa czasowa użytkownika: 
+                    <strong>{{ ( timezoneOffsetToGMT < 0 ) ? "+" + ( timezoneOffsetToGMT / (-3600) ) : ( timezoneOffsetToGMT / 3600 ) }}</strong>h
+                </li>
                 <li>(base: <strong>{{ currentWeather.base ? currentWeather.base : "---" }}</strong>, sys.type: <strong>{{ currentWeather.sys.type ? currentWeather.sys.type : "---" }}</strong>)</li>
             </ul>
         </div>    

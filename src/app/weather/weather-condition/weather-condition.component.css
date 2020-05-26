@@ -4,13 +4,18 @@ h1, h2, h3, h4, h5, h6, ul, p
     margin: 0 auto;
 }
 
+h2 > span {
+    font-size: 0.75em;
+    font-weight: 600;
+}
 
 .current-weather {
     display: flex;
     flex-direction: column;
-    background-color: #ddd;
-    margin: 2em;
+    max-width: 1000px;
+    margin: 5px auto;
     padding: 1em;
+    background-color: #ddd;
     border: 2px solid #333;
     border-radius: 1em;
     overflow: hidden;
@@ -33,9 +38,8 @@ h1, h2, h3, h4, h5, h6, ul, p
 }
 
 .main-title {
-    margin: -1em -1em 0;
-    padding: 0.75em 0;
-    padding-bottom: 0.5em;
+    margin: -0.5em -1em 0;
+    padding: 0.25em 0.5em 0.4em;
     font-size: 2em;
     line-height: 1em;
     text-align: center;
@@ -44,14 +48,24 @@ h1, h2, h3, h4, h5, h6, ul, p
 
 .main-info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.main-info img {
+    /* display: inline-block; */
+    width: 100%;
+    max-width: 100px;
+    /* margin: 0 auto; */
 }
 
 .main-info > div {
-    margin-left: 1em;
-    /* margin-right: 1em; */
-    min-width: 10em;
-    background-color: #ddf;
+    background-color: #eee;
+}
+
+.main-info > div > h2:first-child {
+    cursor: help;
 }
 
 .main-info > div > h2:last-child {
@@ -61,13 +75,12 @@ h1, h2, h3, h4, h5, h6, ul, p
 .location-info {
     text-align: right;
     font-size: 1.25em;
-    background-color: #e6e6e6;
+    background-color: #eee;
 }
 
-
-/* .location-info p {
-    font-size: 1.5em;
-} */
+.location-info > h1 {
+    cursor: help;
+}
 
 .location-info span strong {
     font-weight: bolder;
@@ -77,6 +90,7 @@ h1, h2, h3, h4, h5, h6, ul, p
 .temp-info,
 .footer-notes {
     display: flex;
+    flex-direction: column;
     align-items: center;
     align-content: space-between;
     margin: 0 -1em;
@@ -94,6 +108,21 @@ h1, h2, h3, h4, h5, h6, ul, p
     line-height: 0.8em;
 }
 
+.air-info {
+    padding: 1em 0;
+}
+
+/* .air-info ul {
+    margin: 0 auto;
+} */
+
+.air-info ul:first-child li:nth-of-type(2n),
+.air-info ul:last-child li:nth-of-type(2n+1)
+{
+    background-color: #eee;
+}
+
+
 .footer-notes {
     display: flex;
     align-items: center;
@@ -110,35 +139,119 @@ h1, h2, h3, h4, h5, h6, ul, p
 .temp-info h3,
 .footer-notes h3
 {
-    margin: 0 1em;
-    flex-basis: 8em;
+    margin: 1em;
     /* vertical-align: middle; */
 }
 
-.temp-info h3 {
+/* .temp-info h3 {
     flex-basis: 6em;
-}
+} */
 
 
 .temp-info ul,
 .footer-notes ul
 {
     display: flex;
+    /* flex-basis: 6em; */
     /* flex-basis: 10em; */
     flex-wrap: wrap;
     align-items: center;
 }
 
 .temp-info ul li,
+.air-info ul li,
 .footer-notes ul li
 {
-    background-color: #d9d9d9;
+    background-color: #ddd;
     margin-left: 1em;
     margin-right: 1em;
     padding: 0.25em;
 }
 
+.air-info ul strong,
+.footer-notes ul strong
+{
+    font-size: 1.25em;
+}
+
 .footer-notes ul li:last-child {
     background-color: #bbb;
     font-style: italic;
+}
+
+
+/*  ========= KWERENDY ========= */
+
+@media screen and (min-width: 320px) {
+    .main-info {
+        flex-direction: row;
+    }
+
+    /* .main-info img {
+        margin: 0;
+    } */
+
+    .main-info > div {
+        margin-left: 1em;
+        text-align: left;
+        /* min-width: 10em; */
+    }
+
+
+    .temp-info,
+    .footer-notes {
+        flex-direction: row;
+    }
+
+    .temp-info ul,
+    .footer-notes ul
+    {
+        flex-direction: row;
+        /* flex-basis: 10em; */
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+
+    .footer-notes h3 {
+        flex-basis: 6em;
+        margin: 0.75em 1em;
+    }
+
+}
+
+
+
+/* @media screen and (min-width: 360px) {
+
+    
+} */
+
+
+
+@media screen and (min-width: 700px) {
+    h2.main-title + div {
+        display: flex;
+        flex-direction: row;
+        align-content: space-between;
+        align-items: center;
+    }
+
+    .location-info {
+        margin-left: auto;
+    }
+
+    .air-info {
+        display: flex;
+    }
+    
+    .air-info > ul {
+        width: 49%;
+        /* padding: 0 0.5em; */
+    }
+
+    .air-info ul:last-child {
+        text-align: right;
+    }
+
 }

@@ -15,10 +15,11 @@
         <p>Szczegóły błędu: <strong>{{ weatherData.cod }}</strong> - <em>{{ weatherData.message }}</em>.</p>
     </div>
 
+    <!-- <small>przesunięcie strefy czasowej do GMT [s]: <strong>{{ userTimezoneOffset }}</strong></small> -->
 </div>
 
 <div *ngIf="isLocationRequestDoneOK" >
 
-    <app-weather-condition [currentWeather]="weatherData" [enteredLocation]="typedLocation"></app-weather-condition>
+    <app-weather-condition [currentWeather]="weatherData" [enteredLocation]="typedLocation" [timezoneOffsetToGMT]="userTimezoneOffset"></app-weather-condition>
 
 </div>
