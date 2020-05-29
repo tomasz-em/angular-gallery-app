@@ -1,6 +1,11 @@
 <div class="current-weather">
     <div>
-        <h2 class="main-title">Bieżące warunki pogodowe<span>, stan z <strong>{{ convertTimestampToTimeString( currentWeather.dt ) }}</strong></span></h2>
+        <h2 class="main-title">Bieżące warunki pogodowe<span>, stan z <strong>{{ convertTimestampToTimeString( currentWeather.dt ) }}</strong>
+            </span>
+            <span *ngIf=" convertTimestampToTimeStringIncludingLocationOffset( currentWeather.dt ) != convertTimestampToTimeString( currentWeather.dt )">
+                (lokalnie: <strong> {{ convertTimestampToTimeStringIncludingLocationOffset( currentWeather.dt ) }}</strong>)
+            </span>
+        </h2>
         <div>
             <div class="main-info">
                 <img src="https://openweathermap.org/img/wn/{{ currentWeather.weather[0].icon }}@2x.png" 

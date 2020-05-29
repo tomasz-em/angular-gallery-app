@@ -22,6 +22,21 @@ function convertUnixEpochToHourAndMinutesString( timestamp ) {
     return convertedDate.getHours() + ':' + ( "0" + convertedDate.getMinutes() ).substr(-2);    // godziny [0-23]:[00-59] (godziny JEDNO lub DWUcyfrowe, minuty DWUcyfrowe)
 }
 
+function convertUnixEpochToLongDate( timestamp ) {
+    var convertedDate = new Date( timestamp * 1000 );   // zamiana na milisekundy, jako "prawdziwy" znacznik epoki
+    return convertedDate.getUTCDate() + ". " + getNMonthName( convertedDate.getMonth() )+ " " + convertedDate.getFullYear();
+}
+
+function getWeekdayName( currentDayNumber ) {
+    var weekdays = [ "niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota" ];
+    return weekdays[currentDayNumber];
+}
+
+function getNMonthName( currentmonthNumber ) {
+    var months = [ "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia" ];
+    return months[currentmonthNumber];
+}
+
 function convertMPS2KPH ( velocity ) {
     /* [m/s] na [km/h] ==> (m/s) * (60*60)/1000, albo po prostu przemożyć podaną predkość przez 3,6 ;) */
     return ( velocity * 3.6 ).toFixed(2);    // tyllko DWA miejsca po przecinku zwróci maksymalnie z ZAOKRĄGLENIEM

@@ -1,0 +1,63 @@
+h1, h2, h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h2 > span:last-child {
+    color: #333;
+}
+
+
+.day-container {
+    padding: 1em;
+    margin: 1.25em;
+    background-color: #ddd;
+    border: 2px solid #333;
+    border-radius: 1em;
+    text-align: center;
+}
+
+.hours-box {
+    margin: 0.5em auto;
+    padding: 0.5em;
+    max-width: 1277px; /* jako mnożenie szerokości ~160px * 8 elementów - dopasowanie*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    list-style: none;
+    background-color: #eee;
+    border: 2px solid #333;
+}
+
+.redings {
+    max-width: 150px;
+    flex-basis: 150px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    margin-right: 0.5em;
+    padding-bottom: 0.2em;
+    margin-bottom: 1.5em;
+}
+
+.redings:last-child {
+    margin-right: 0;
+}
+
+.text-height {
+    min-height: 4em;
+}
+
+.redings > div:nth-child(2n) {
+    background-color: #eee;
+}
+
+.content-right {
+    justify-content: flex-end;
+}
