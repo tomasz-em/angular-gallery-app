@@ -76,12 +76,12 @@
                 </li>
 
                 <li>
-                    strefa czasowa: <strong>{{ ( currentWeather.timezone >= 0 ) ? "+" : '' }}{{ currentWeather.timezone / 3600 }}</strong>h
+                    strefa czasowa: <strong>GMT {{ ( currentWeather.timezone >= 0 ) ? "+" : '' }}{{ currentWeather.timezone / 3600 }}</strong>h
                 </li>
                 <li *ngIf="currentWeather.timezone + timezoneOffsetToGMT != 0">strefa czasowa użytkownika: 
                     <strong>{{ ( timezoneOffsetToGMT < 0 ) ? "+" + ( timezoneOffsetToGMT / (-3600) ) : ( timezoneOffsetToGMT / 3600 ) }}</strong>h
                 </li>
-                <li>(base: <strong>{{ currentWeather.base ? currentWeather.base : "---" }}</strong>, sys.type: <strong>{{ currentWeather.sys.type ? currentWeather.sys.type : "---" }}</strong>)</li>
+                <!-- <li>(base: <strong>{{ currentWeather.base ? currentWeather.base : "---" }}</strong>, sys.type: <strong>{{ currentWeather.sys.type ? currentWeather.sys.type : "---" }}</strong>)</li> -->
             </ul>
         </div>    
      </div>  

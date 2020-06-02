@@ -11,6 +11,11 @@ h1 > span {
     transition: background-color 0.5s 0.05s;
 }
 
+.filler h1:first-of-type {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 .bgc-gallery {
     background-color: #ccf6cc;
 }
@@ -19,12 +24,12 @@ h1 > span {
     background-color: #ccf;
 }
 
-.outer-box {
+/* .outer-box { */
     /* display: flex;
     flex-direction: column; */
 
     /* padding-bottom: 2em; */
-}
+/* } */
 
 /* .outer-box > div {
     margin: 1em;

@@ -1,8 +1,3 @@
-h1, h2, h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
 h2 {
     font-size: 2em;
 }
@@ -11,11 +6,15 @@ h2 > span:last-child {
     color: #333;
 }
 
+.forecast-conatiner {
+    margin: 0 0.25em;
+}
 
 .day-container {
     padding: 1em;
-    margin: 1.25em;
-    background-color: #ddd;
+    margin: 1.25em auto;
+    max-width: 1315px;
+    background-color: #eee;
     border: 2px solid #333;
     border-radius: 1em;
     text-align: center;
@@ -23,7 +22,8 @@ h2 > span:last-child {
 
 .hours-box {
     margin: 0.5em auto;
-    padding: 0.5em;
+    /* padding: 0.5em; */
+    padding-left: 0;
     max-width: 1277px; /* jako mnożenie szerokości ~160px * 8 elementów - dopasowanie*/
     display: flex;
     flex-direction: row;
@@ -31,31 +31,41 @@ h2 > span:last-child {
     text-align: center;
     list-style: none;
     background-color: #eee;
-    border: 2px solid #333;
 }
 
-.redings {
-    max-width: 150px;
-    flex-basis: 150px;
+.readings {
     display: flex;
     flex-direction: column;
+    flex-basis: 150px;
+    max-width: 300px;
+    flex-wrap: wrap;
+    flex-grow: 1.5;
     background-color: #ccc;
     border: 1px solid #ccc;
-    margin-right: 0.5em;
-    padding-bottom: 0.2em;
-    margin-bottom: 1.5em;
+    margin: 0 0.25em 1.5em;
 }
 
-.redings:last-child {
-    margin-right: 0;
-}
-
-.text-height {
+.description-text {
     min-height: 4em;
 }
 
-.redings > div:nth-child(2n) {
+.velocity-text {
+    min-height: 3.4em;
+}
+
+.readings > div:nth-child(2n) {
     background-color: #eee;
+}
+
+.readings > div:first-child > strong,
+.readings > div:nth-child(2) > strong,
+.readings > div:last-child > strong
+{
+    font-size: 1.25em;
+}
+
+.readings > div:nth-child(5) > strong {
+    font-size: 1.15em;
 }
 
 .content-right {
