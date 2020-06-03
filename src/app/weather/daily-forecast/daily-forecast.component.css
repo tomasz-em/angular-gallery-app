@@ -6,12 +6,12 @@ h2 > span:last-child {
     color: #333;
 }
 
-.forecast-conatiner {
+.forecast-container {
     margin: 0 0.25em;
 }
 
 .day-container {
-    padding: 1em;
+    padding: 1em 1em 0;
     margin: 1.25em auto;
     max-width: 1315px;
     background-color: #eee;
@@ -21,7 +21,8 @@ h2 > span:last-child {
 }
 
 .hours-box {
-    margin: 0.5em auto;
+    margin: 0 auto;
+    margin-top: 0.5em;
     /* padding: 0.5em; */
     padding-left: 0;
     max-width: 1277px; /* jako mnożenie szerokości ~160px * 8 elementów - dopasowanie*/
@@ -43,31 +44,4 @@ h2 > span:last-child {
     background-color: #ccc;
     border: 1px solid #ccc;
     margin: 0 0.25em 1.5em;
-}
-
-.description-text {
-    min-height: 4em;
-}
-
-.velocity-text {
-    min-height: 3.4em;
-}
-
-.readings > div:nth-child(2n) {
-    background-color: #eee;
-}
-
-.readings > div:first-child > strong,
-.readings > div:nth-child(2) > strong,
-.readings > div:last-child > strong
-{
-    font-size: 1.25em;
-}
-
-.readings > div:nth-child(5) > strong {
-    font-size: 1.15em;
-}
-
-.content-right {
-    justify-content: flex-end;
 }

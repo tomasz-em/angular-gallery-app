@@ -1,0 +1,23 @@
+<div class="hourly">
+    <div>
+        <strong>{{ hourlyForecast.hourText }}</strong>
+    </div>
+    <div class="mouse-info" title="odczuwalna: {{ hourlyForecast.tempFeel }} °C, min: {{ hourlyForecast.tempMin }} °C, max: {{ hourlyForecast.tempMax }} °C">
+        <strong>{{ hourlyForecast.temp }}</strong> &deg;C
+    </div>
+    <div class="mouse-info" title="zachmurzenie: {{ hourlyForecast.clouds }}%">
+        <img src="https://openweathermap.org/img/wn/{{ hourlyForecast.icon }}@2x.png" alt="{{ hourlyForecast.description }}" />
+    </div>
+    <div class="description-text">
+        <strong>{{ hourlyForecast.description }}</strong>
+    </div>
+    <div class="velocity-text mouse-info" title="kierunek: {{ hourlyForecast.windDeg }}°" >
+        <strong>{{ hourlyForecast.windSpeed }}</strong> m/s<br />
+        (<strong>{{ hourlyForecast.windSpeedKPH }}</strong> km/h)
+        <!-- hourlyForecast.windDeg  -->
+    </div>
+    <div>
+        <strong>{{ hourlyForecast.pressure }}</strong> hPa
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-<div class="forecast-conatiner">
+<div class="forecast-container">
 
     <section *ngFor="let dayForecast of simplifiedForecast;  let i = index" class="day-container" > <!--  wewnętrzna i WBUDOWANA zmienna pętli -->
         <h2><span>{{ dayForecast.hourlyForecasts[0].dateLongText }}</span>, <span>{{ dayForecast.hourlyForecasts[0].dateDayName }}</span></h2>
@@ -7,33 +7,13 @@
         <ul class="hours-box" [class.content-right]="i === 0">
             <!-- *ngFor="...; let i = index" [class.active]="currentIndex === i" -->
             <li *ngFor="let forecast of dayForecast.hourlyForecasts" class="readings"> 
-                <div>
-                    <strong>{{ forecast.hourText }}</strong>
-                </div>
-                <div>
-                    <strong>{{ forecast.temp }}</strong> &deg;C
-                </div>
-                <div>
-                    <img src="https://openweathermap.org/img/wn/{{ forecast.icon }}@2x.png" alt="{{ forecast.description }}" />
-                </div>
-                <div class="description-text">
-                    <strong>{{ forecast.description }}</strong>
-                </div>
-                <div class="velocity-text">
-                    <strong>{{ forecast.windSpeed }}</strong> m/s<br />
-                    (<strong>{{ forecast.windSpeedKPH }}</strong> km/h)
-                    <!-- forecast.windDeg  -->
-                </div>
-                <div>
-                    <strong>{{ forecast.pressure }}</strong> hPa
-                </div>
+<!-- klasa "readings" powinna być określona w komponencie wewnętrznym, ale tam dostaje inne losowe klasy angulara, w efekcie czego FLEXBOX nie określa dobrze szerokości elementów podległych   -->
+                <app-hourly-forecast  [hourlyForecast]="forecast" ></app-hourly-forecast>
             </li>
 
+                <!-- <app-hourly-forecast [hourlyForecast]="forecast" ></app-hourly-forecast> -->
             <!-- <pre>{{ forecast | json }}</pre> -->
-
         </ul>
-
-    
         <!-- <pre>{{ forecastWeather | json }}</pre> -->
         <!-- <pre>{{ simplifiedForecast | json }}</pre> -->
     </section>

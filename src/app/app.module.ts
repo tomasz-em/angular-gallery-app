@@ -8,6 +8,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { WeatherConditionComponent } from './weather/weather-condition/weather-condition.component';
 import { ProjectSelectorComponent } from './project-selector/project-selector.component';
 import { DailyForecastComponent } from './weather/daily-forecast/daily-forecast.component';
+import { HourlyForecastComponent } from './weather/daily-forecast/hourly-forecast/hourly-forecast.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DailyForecastComponent } from './weather/daily-forecast/daily-forecast.
     WeatherComponent,
     WeatherConditionComponent,
     ProjectSelectorComponent,
-    DailyForecastComponent
+    DailyForecastComponent,
+    HourlyForecastComponent
   ],
   imports: [
     BrowserModule,

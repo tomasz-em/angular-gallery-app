@@ -52,7 +52,7 @@ export class WeatherComponent {
          return response.json();  // póki co ZAWSZE zwrot OTRZYMANYCH DANYCH
       })
       .then( ( data: WeatherData ) => { // użycie typu danych
-        console.log({ data });
+        // console.log({ data });
         this.weatherData = null;  // zerowanie poprzedniej zawartości zapytania (o ile jakaś była)
         this.typedLocation = this.location;
         this.weatherData = data;  // przypiasnie OTRZYMANYCH danych, o JAKIELKOLWIEK otrzymanej strukturze!
@@ -71,12 +71,13 @@ export class WeatherComponent {
               return response.json();  // póki co ZAWSZE zwrot OTRZYMANYCH DANYCH
             })
             .then( ( forecastData: ForecastData ) => { // użycie typu danych
-              console.log( forecastData );
+              // console.log( forecastData );
               this.forecastData = null;  // zerowanie poprzedniej zawartości zapytania (o ile jakaś była)
               this.forecastData = forecastData;  // przypiasnie OTRZYMANYCH danych, o JAKIELKOLWIEK otrzymanej strukturze!
               this.simplifiedForecastData = this.simplifyForecastData( forecastData );
+              // console.log('SIMPLE:', this.simplifiedForecastData);
 
-              if ( forecastData.cod == "200" ) {  // !!! API zwraca DANE POPRAWNE jako kod "200" (tesktowo!) !!!
+              if ( forecastData.cod == "200" ) {  // !!! API zwraca DANE POPRAWNE jako kod "200" (nie  liczba, ale forma tekstowa!) !!!
                 this.isForecastRequestDoneOK = true;
                 this.isForecastRequestError = false;
               }

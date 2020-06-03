@@ -1,0 +1,35 @@
+.hourly > div:nth-child(2n) {
+    background-color: #eee;
+}
+
+.hourly > div:first-child > strong,
+.hourly > div:nth-child(2) > strong,
+.hourly > div:last-child > strong
+{
+    font-size: 1.25em;
+}
+
+.hourly > div:nth-child(5) > strong {
+    font-size: 1.15em;
+}
+
+.content-right {
+    justify-content: flex-end;
+}
+
+
+/* .hourly > div:not(:nth-child(1)):hover,
+.hourly > div:not(:nth-child(4)):hover,
+.hourly > div:not(:nth-child(6)):hover */
+.hourly > div.mouse-info:hover {
+    cursor: help;
+    background-color: #ddd;
+}
+
+.description-text {
+    min-height: 4em;
+}
+
+.velocity-text {
+    min-height: 3.4em;
+}
