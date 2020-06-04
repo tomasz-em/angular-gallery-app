@@ -92,7 +92,7 @@ export class WeatherComponent {
         this.forecastData = null;  // zerowanie poprzedniej zawartości zapytania (o ile jakaś była)
         this.forecastData = forecastData;  // przypiasnie OTRZYMANYCH danych, o JAKIELKOLWIEK otrzymanej strukturze!
         this.simplifiedForecastData = this.simplifyForecastData( forecastData );
-        console.log('SIMPLE:', this.simplifiedForecastData);
+        // console.log('SIMPLE:', this.simplifiedForecastData);
 
         if ( forecastData.cod == "200" ) {  // !!! API zwraca DANE POPRAWNE jako kod "200" (nie  liczba, ale forma tekstowa!) !!!
           this.isForecastRequestDoneOK = true;
@@ -115,13 +115,15 @@ export class WeatherComponent {
 
     //let allDaysForecast ...
     allForecasts = forecast.list.map( (hourlyForecast, index ) => {
-      // WYRAŻONE W CZASIE LOKALNYM, ZAWSZE UWZGLĘDNIAJĄC PRZESUNIĘCIE STREFY CZASOWEJ PZREGLĄDRAKI UŻYTKOWNIKA!!! 
+
+      // WYRAŻONE W CZASIE LOKALNYM, ZAWSZE UWZGLĘDNIAJĄC PRZESUNIĘCIE STREFY CZASOWEJ PRZEGLĄDARKI UŻYTKOWNIKA!!! 
           // ...albo po prostu je tyle razy dodać na koniec, ile wystąpiło składników sumy
       const localTime = ( hourlyForecast.dt + this.userTimezoneOffset ) + ( forecast.city.timezone + this.userTimezoneOffset ); // zapis wyjaśnijący z nawiasami
       const localTimeString = convertUnixEpochToShortDateWith24Hours( localTime );
         //const userTime = convertUnixEpochToShortDateWith24Hours( hourlyForecast.dt );
       // console.log(forecast.city.name + ': userTime' , userTime,' userDT:', hourlyForecast.dt, 'localTime:', localTime, "(", forecast.city.timezone, " + ", this.userTimezoneOffset,") localTimeString:", localTimeString, "localTime na DATĘ:", convertUnixEpochToLongDate( localTime ) );
-      const newObj = {
+
+      const newObj = {  // budowanie ulepszonego obiektu prognozy godzinowej
         dtUser: hourlyForecast.dt,
         dateTimeUser: hourlyForecast.dt_txt,  // razem: data + godzina 
         dateTextUser: hourlyForecast.dt_txt.substr(0, 10),
@@ -153,7 +155,7 @@ export class WeatherComponent {
     // console.log("obiekt godziowy:", newObj);
     return newObj;  
     });
-    console.log("LISTA DAT:", dateList);
+    // console.log("LISTA DAT:", dateList);
 
     dateList.forEach( ( currentDate, i ) => {
       theWhole = [ ...theWhole, { 
@@ -170,10 +172,10 @@ export class WeatherComponent {
       });
     });
     //console.log('przeliczanie:', theWhole)
-    return theWhole;
+    return theWhole;  // popracować nad formatem zwracanej wartości (ma to być 100% zgodne z danym interfejsem "")
   } 
 
-  velocityToKPH ( velocity) {
+  velocityToKPH ( velocity: number ): number {
     return convertMPS2KPH( velocity);
   }
 
