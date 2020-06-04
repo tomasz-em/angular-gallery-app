@@ -1,3 +1,7 @@
+/* .hourly {
+    justify-content: inherit;   /*  przeniesienie ustawienia z rodzica, kiedy utracono to w komponencie dziecka przez dynamiczne klasy angulara */
+/*} */
+
 .hourly > div:nth-child(2n) {
     background-color: #eee;
 }
@@ -13,15 +17,12 @@
     font-size: 1.15em;
 }
 
-.content-right {
-    justify-content: flex-end;
-}
 
 
 /* .hourly > div:not(:nth-child(1)):hover,
 .hourly > div:not(:nth-child(4)):hover,
 .hourly > div:not(:nth-child(6)):hover */
-.hourly > div.mouse-info:hover {
+.hourly .mouse-info:hover {
     cursor: help;
     background-color: #ddd;
 }

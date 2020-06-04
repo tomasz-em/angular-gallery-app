@@ -1,11 +1,14 @@
 export interface SimplifiedHourlyData {
-  dt: number,
-  dateTime: string,
-  dateText: string,
+  dtUser: number,
+  dateTimeUser?: string,
+  dateTextUser?: string,
+  hourTextUser?: string,
+  dtLocation: number,
+  dateTextLocation: string,
+  hourTextLocation: string,
   dateMonthName: string,
   dateDayName: string,
   dateLongText: string,
-  hourText: string,
   temp: number,
   tempMin: number,
   tempMax: number,
@@ -18,6 +21,3 @@ export interface SimplifiedHourlyData {
   windSpeedKPH: number,
   windDeg: number,
 }
-
-// struktura danych do poprawy:
-//   - wydzielić CZAS LOKLANY z CZASU ZAPYTANIA oraz wpływ tego na datę - grupowanie prognóz względem daty LOKALNEJ!

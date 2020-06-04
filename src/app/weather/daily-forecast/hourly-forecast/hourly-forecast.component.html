@@ -1,8 +1,11 @@
 <div class="hourly">
     <div>
-        <strong>{{ hourlyForecast.hourText }}</strong>
+        <strong class="mouse-info" title="czas lokalny">{{ hourlyForecast.hourTextLocation}}</strong>
+        <span class="mouse-info" *ngIf="hourlyForecast.hourTextLocation != hourlyForecast.hourTextUser">
+            (<strong title="czas względem strefy czasowej użytkownika">{{ hourlyForecast.hourTextUser }}</strong>)
+        </span>
     </div>
-    <div class="mouse-info" title="odczuwalna: {{ hourlyForecast.tempFeel }} °C, min: {{ hourlyForecast.tempMin }} °C, max: {{ hourlyForecast.tempMax }} °C">
+    <div class="mouse-info" title="odczuwalna: {{ hourlyForecast.tempFeel }} °C, &#10;min: {{ hourlyForecast.tempMin }} °C, &#10;max: {{ hourlyForecast.tempMax }} °C">
         <strong>{{ hourlyForecast.temp }}</strong> &deg;C
     </div>
     <div class="mouse-info" title="zachmurzenie: {{ hourlyForecast.clouds }}%">

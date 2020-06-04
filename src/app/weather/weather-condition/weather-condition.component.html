@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="location-info">
-                <h1 title="szerokość geograficzna: {{ currentWeather.coord.lat }}, długość geogr.: {{ currentWeather.coord.lon }}">{{ enteredLocation }}</h1>
+                <h1 title="szerokość geograficzna: {{ currentWeather.coord.lat }}, &#10;długość geogr.: {{ currentWeather.coord.lon }}">{{ enteredLocation }}</h1>
                 <div>
                     <p>
                         <span *ngIf="enteredLocation != currentWeather.name">(<strong>{{ currentWeather.name }}</strong>)</span> 

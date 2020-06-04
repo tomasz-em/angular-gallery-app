@@ -24,8 +24,19 @@ function convertUnixEpochToHourAndMinutesString( timestamp ) {
 
 function convertUnixEpochToLongDate( timestamp ) {
     var convertedDate = new Date( timestamp * 1000 );   // zamiana na milisekundy, jako "prawdziwy" znacznik epoki
-    return convertedDate.getUTCDate() + ". " + getNMonthName( convertedDate.getMonth() )+ " " + convertedDate.getFullYear();
+    return convertedDate.getDate() + ". " + getNMonthName( convertedDate.getMonth() ) + " " + convertedDate.getFullYear();
 }
+
+function convertUnixEpochToShortDate( timestamp ) {
+    var convertedDate = new Date( timestamp * 1000 );   // zamiana sekund  na milisekundy
+            // UWAGA: numer miesiąca jest inkrementowany dla prawidłowej numeracji; zwykłyzakres to [0,11], nieakceptowalny jako wyświetlanie dla ludzi
+    return convertedDate.getFullYear() + "-" + ( "0" + ( convertedDate.getMonth() + 1 ) ).substr(-2) + "-" + ( "0" + convertedDate.getDate() ).substr(-2);
+}   // docelowo zwracana forma daty: "YYYY-MM-DD" z ZERAMI jako dopełnieniem
+
+function convertUnixEpochToShortDateWith24Hours( timestamp ) {
+    var convertedDate = new Date( timestamp * 1000 );
+    return convertUnixEpochToShortDate( timestamp ) + " " + ( "0" + ( convertedDate.getHours() ) ).substr(-2) + ":" + ( "0" + convertedDate.getMinutes() ).substr(-2) + ":" + ( "0" + convertedDate.getSeconds() ).substr(-2);
+}   // docelowo zwracana forma daty: "YYYY-MM-DD HH:MM:SS" z ZERAMI jako dopełnieniem
 
 function getWeekdayName( currentDayNumber ) {
     var weekdays = [ "niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota" ];
